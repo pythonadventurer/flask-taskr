@@ -1,5 +1,8 @@
 *.pyc
-env/
-__pycache__/
-private/
+env
+__pycache__
+private
+*.DS_Store
+project/_config.py
+
 
