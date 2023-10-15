@@ -4,13 +4,13 @@ from functools import wraps
 from flask import Flask, flash, redirect, render_template, \
      request, session, url_for
 from flask_sqlalchemy import SQLAlchemy
-# from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect
 import pdb
-# config
+
 
 app = Flask(__name__)
-# csrf = CSRFProtect(app)
 app.config.from_object('_config')
+csrf = CSRFProtect(app)
 db = SQLAlchemy(app)
 
 

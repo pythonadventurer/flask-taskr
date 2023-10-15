@@ -4,6 +4,7 @@
 <h1>Welcome to FlaskTaskr.</h1>
 <h3>Please login to access the task list.</h3>
 <form action="/" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div class="input-group">
         <label for="name">Username:</label>
         <input type="text" id="username" name="username" 
