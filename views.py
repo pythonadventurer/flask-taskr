@@ -69,8 +69,7 @@ def tasks():
 def new_task():
     form = AddTaskForm(request.form)
     if request.method == 'POST':
-        # pdb.set_trace()
-        if form.validate_on_submit():
+        if form.validate_on_submit:
             new_task = Task(
                 form.name.data,
                 form.due_date.data,
@@ -80,6 +79,7 @@ def new_task():
             db.session.add(new_task)
             db.session.commit()
             flash('New entry was successfully posted. Thanks.')
+
     return redirect(url_for('tasks'))   
 
 
