@@ -27,6 +27,12 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 
+def flash_errors(form):
+    for field, errors in form.erros.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form,field).label.text, error),'error')
+
 
 @app.route('/',methods=['GET','POST'])
 def login():
@@ -102,9 +108,9 @@ def new_task():
             flash('New entry was successfully posted!')
             return redirect(url_for('tasks'))   
         else:
-            flash('All fields are required.')
-            return redirect(url_for('tasks'))
-    return render_template('tasks.html',form=form)
+            return render_template('tasks.html',form=form,error=error)
+
+    return render_template('tasks.html',form=form, error=error)
 
 
 # Mark tasks as complete
